@@ -1,8 +1,16 @@
 from soup_page import SoupPage
 
-page = SoupPage("https://www.livelib.ru/reader/alexey-goloburdin/reviews/~5")
 
+page = SoupPage(f"https://www.livelib.ru/reader/alexey-goloburdin/reviews")
+i = 1
 
-for t, w, lk in zip(page.get_all_reviews_book_titles(), page.get_all_reviews_book_watchs(), page.get_all_reviews_book_likes()):
-    print(f"title: {t}, watches: {w}, likes: {lk}")
-print(page.get_all_reviews_book_titles())
+while page.get_all_reviews_book_likes():
+    titles = page.get_all_reviews_book_titles()
+    wathes = page.get_all_reviews_book_watchs()
+    likes = page.get_all_reviews_book_likes()
+
+    for t, w, l in zip(titles, wathes, likes):
+        print(f"title: {t}, watches: {w}, likes: {l}")
+    
+    page = SoupPage(f"https://www.livelib.ru/reader/alexey-goloburdin/reviews~{i}")
+    i += 1
