@@ -1,16 +1,11 @@
 from soup_page import SoupPage
 
-BASE_URL = "https://www.livelib.ru/reader/sariya1/reviews"
+BASE_URL = "https://www.livelib.ru/reader/sariya1/reviews/~1"
 page = SoupPage(BASE_URL)
-i = 1
+i = 2
 
 while page.get_all_reviews_book_likes():
-    titles = page.get_all_reviews_book_titles()
-    wathes = page.get_all_reviews_book_watchs()
-    likes = page.get_all_reviews_book_likes()
-
-    for t, w, l in zip(titles, wathes, likes):
-        print(f"title: {t}, watches: {w}, likes: {l}")
-    
+    articles = page.get_all_reviews_from_page()
+    print(*articles, sep='\n')
     page = SoupPage(f"{BASE_URL}/~{i}")
     i += 1
