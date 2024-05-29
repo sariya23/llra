@@ -33,3 +33,5 @@ class SoupPage:
         
         return reviews
     
+    def is_reviews_on_page(self) -> bool:
+        return bool(self.get_all_reviews_book_titles())
