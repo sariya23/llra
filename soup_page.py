@@ -1,26 +1,27 @@
-from locatros import Locators
-from article import Article
-
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
+
+from article import Article
+from locatros import Locators
+
 
 class SoupPage:
     def __init__(self, url):
         self.__url = url
-        self.__page= requests.get(url)
+        self.__page = requests.get(url)
         self.__soup_page = BeautifulSoup(self.__page.text, "html.parser")
-    
+
     def __get_all_reviews_book_titles(self):
         titles = self.__soup_page.select(Locators.TITLES)
-        return [t.text for t in titles]
+        return [title.text for title in titles]
 
     def __get_all_reviews_book_likes(self):
         likes = self.__soup_page.select(Locators.LIKES)
-        return [l.text.strip() for l in likes]
+        return [like_amount.text.strip() for like_amount in likes]
 
     def __get_all_reviews_book_watches(self):
         wathces = self.__soup_page.select(Locators.WATCHES)
-        return [w.text.strip() for w in wathces]
+        return [watch_amount.text.strip() for watch_amount in wathces]
 
     def get_all_reviews_from_page(self):
         reviews: list[Article] = []
@@ -28,10 +29,12 @@ class SoupPage:
         watches = self.__get_all_reviews_book_watches()
         titles = self.__get_all_reviews_book_titles()
 
-        for l, w, t in zip(likes, watches, titles):
-            reviews.append(Article(title=t, watches=w, likes=l))
-        
+        for like_amount, watch_amount, title in zip(likes, watches, titles):
+            reviews.append(
+                Article(likes=like_amount, watches=watch_amount, title=title)
+            )
+
         return reviews
-    
+
     def is_reviews_on_page(self) -> bool:
         return bool(self.__get_all_reviews_book_titles())
