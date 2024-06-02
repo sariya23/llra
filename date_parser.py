@@ -17,7 +17,7 @@ class DateParser:
         первую букву месяца в верхний регистр.
         """
         ru_en_month = {
-            "января": "Junuary",
+            "января": "January",
             "февраля": "February",
             "марта": "March",
             "апреля": "April",
