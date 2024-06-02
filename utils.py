@@ -3,7 +3,7 @@ def convert_number_with_K_notations_to_int(amount_of_watches: str) -> int:
     Переводит запись вида nK в целое число n.
 
     Например:
-    >>> convert_number_with_K_to_int("2K")
+    >>> convert_number_with_K_notations_to_int("2K")
     >>> 2000
     """
     if "K" in amount_of_watches:
