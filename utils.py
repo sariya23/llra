@@ -1,4 +1,4 @@
-def convert_number_with_K_to_int(amount_of_watches: str) -> int:
+def convert_number_with_K_notations_to_int(amount_of_watches: str) -> int:
     """
     Переводит запись вида nK в целое число n.
 

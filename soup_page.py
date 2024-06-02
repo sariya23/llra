@@ -1,8 +1,9 @@
-import requests
-from bs4 import BeautifulSoup
+import requests  # type: ignore
+from bs4 import BeautifulSoup  # type: ignore
 
 from article import Article
 from locatros import Locators
+from utils import convert_number_with_K_notations_to_int
 
 
 class SoupPage:
@@ -17,11 +18,14 @@ class SoupPage:
 
     def __get_all_reviews_book_likes(self):
         likes = self.__soup_page.select(Locators.LIKES)
-        return [like_amount.text.strip() for like_amount in likes]
+        return [int(like_amount.text.strip()) for like_amount in likes]
 
     def __get_all_reviews_book_watches(self):
         wathces = self.__soup_page.select(Locators.WATCHES)
-        return [watch_amount.text.strip() for watch_amount in wathces]
+        return [
+            convert_number_with_K_notations_to_int(watch_amount.text.strip())
+            for watch_amount in wathces
+        ]
 
     def get_all_reviews_from_page(self):
         reviews: list[Article] = []
