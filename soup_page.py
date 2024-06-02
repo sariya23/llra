@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import requests  # type: ignore
 from bs4 import BeautifulSoup  # type: ignore
 
@@ -27,15 +29,27 @@ class SoupPage:
             for watch_amount in wathces
         ]
 
+    def __get_all_publish_dates(self) -> list[datetime]:
+        pusblish_datetimes = self.__soup_page.select(Locators.PUBLISH_DATETIME)
+        return [publish_datetime.text for publish_datetime in pusblish_datetimes]
+
     def get_all_reviews_from_page(self) -> list[Article]:
         reviews: list[Article] = []
         likes = self.__get_all_reviews_book_likes()
         watches = self.__get_all_reviews_book_watches()
         titles = self.__get_all_reviews_book_titles()
+        publish_dates = self.__get_all_publish_dates()
 
-        for like_amount, watch_amount, title in zip(likes, watches, titles):
+        for like_amount, watch_amount, title, publish_date in zip(
+            likes, watches, titles, publish_dates
+        ):
             reviews.append(
-                Article(likes=like_amount, watches=watch_amount, title=title)
+                Article(
+                    likes=like_amount,
+                    watches=watch_amount,
+                    title=title,
+                    publish_datetime=datetime,
+                )
             )
 
         return reviews
