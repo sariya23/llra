@@ -4,6 +4,7 @@ import requests  # type: ignore
 from bs4 import BeautifulSoup  # type: ignore
 
 from article import Article
+from date_parser import DateParser
 from locatros import Locators
 from utils import convert_number_with_K_notations_to_int
 
@@ -30,25 +31,30 @@ class SoupPage:
         ]
 
     def __get_all_publish_dates(self) -> list[datetime]:
-        pusblish_datetimes = self.__soup_page.select(Locators.PUBLISH_DATETIME)
-        return [publish_datetime.text for publish_datetime in pusblish_datetimes]
+        pusblish_datetimes_tags = self.__soup_page.select(Locators.PUBLISH_DATETIME)
+        pusblish_datetimes = [
+            publish_dt_tag.text for publish_dt_tag in pusblish_datetimes_tags
+        ]
+        for i in range(len(pusblish_datetimes)):
+            date_parser = DateParser(pusblish_datetimes[i])
+            pusblish_datetimes[i] = date_parser.parse_date()
+        return pusblish_datetimes
 
     def get_all_reviews_from_page(self) -> list[Article]:
         reviews: list[Article] = []
         likes = self.__get_all_reviews_book_likes()
         watches = self.__get_all_reviews_book_watches()
         titles = self.__get_all_reviews_book_titles()
-        publish_dates = self.__get_all_publish_dates()
-
-        for like_amount, watch_amount, title, publish_date in zip(
-            likes, watches, titles, publish_dates
+        publish_datetimes = self.__get_all_publish_dates()
+        for like_amount, watch_amount, title, publish_datetime in zip(
+            likes, watches, titles, publish_datetimes
         ):
             reviews.append(
                 Article(
                     likes=like_amount,
                     watches=watch_amount,
                     title=title,
-                    publish_datetime=datetime,
+                    publish_datetime=publish_datetime,
                 )
             )
 
