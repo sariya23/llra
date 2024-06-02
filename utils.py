@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from article import Article
+from review import Review
 
 
 def convert_number_with_K_notations_to_int(amount_of_watches: str) -> int:
@@ -21,7 +21,7 @@ def convert_number_with_K_notations_to_int(amount_of_watches: str) -> int:
     return int(amount_of_watches)
 
 
-def calculate_rating_of_review(review: Article) -> float:
+def calculate_rating_of_review(review: Review) -> float:
     """
     Формула: likes/watches * 1/(curr_date - publish_date)
 

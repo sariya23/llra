@@ -3,9 +3,9 @@ from datetime import datetime
 import requests  # type: ignore
 from bs4 import BeautifulSoup  # type: ignore
 
-from article import Article
 from date_parser import DateParser
 from locatros import Locators
+from review import Review
 from utils import convert_number_with_K_notations_to_int
 
 
@@ -40,8 +40,8 @@ class SoupPage:
             pusblish_datetimes[i] = date_parser.parse_date()
         return pusblish_datetimes
 
-    def get_all_reviews_from_page(self) -> list[Article]:
-        reviews: list[Article] = []
+    def get_all_reviews_from_page(self) -> list[Review]:
+        reviews: list[Review] = []
         likes = self.__get_all_reviews_book_likes()
         watches = self.__get_all_reviews_book_watches()
         titles = self.__get_all_reviews_book_titles()
@@ -50,7 +50,7 @@ class SoupPage:
             likes, watches, titles, publish_datetimes
         ):
             reviews.append(
-                Article(
+                Review(
                     likes=like_amount,
                     watches=watch_amount,
                     title=title,

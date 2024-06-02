@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 @dataclass
-class Article:
+class Review:
     title: str
     likes: int
     watches: int
