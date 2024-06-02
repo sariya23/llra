@@ -5,6 +5,8 @@ def convert_number_with_K_notations_to_int(amount_of_watches: str) -> int:
     Например:
     >>> convert_number_with_K_notations_to_int("2K")
     >>> 2000
+
+    !K Латинская!
     """
     if "K" in amount_of_watches:
         k_index = amount_of_watches.find("K")
