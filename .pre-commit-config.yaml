@@ -39,3 +39,8 @@ repos:
           always_run: false
           pass_filenames: true
           verbose: false
+        - id: mypy
+          name: Mypy
+          entry: mypy
+          files: \.py$
+          language: system
