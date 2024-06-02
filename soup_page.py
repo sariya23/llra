@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup  # type: ignore
 from date_parser import DateParser
 from locatros import Locators
 from review import Review
-from utils import convert_number_with_K_notations_to_int
 
 
 class SoupPage:
@@ -26,7 +25,7 @@ class SoupPage:
     def __get_all_reviews_book_watches(self) -> list[int]:
         wathces = self.__soup_page.select(Locators.WATCHES)
         return [
-            convert_number_with_K_notations_to_int(watch_amount.text.strip())
+            self.convert_number_with_K_notations_to_int(watch_amount.text.strip())
             for watch_amount in wathces
         ]
 
@@ -62,3 +61,21 @@ class SoupPage:
 
     def is_reviews_on_page(self) -> bool:
         return bool(self.__get_all_reviews_book_titles())
+
+    @staticmethod
+    def convert_number_with_K_notations_to_int(amount_of_watches: str) -> int:
+        """
+        Переводит запись вида nK в целое число n.
+
+        Например:
+        >>> convert_number_with_K_notations_to_int("2K")
+        >>> 2000
+
+        !K Латинская!
+        """
+        if "K" in amount_of_watches:
+            k_index = amount_of_watches.find("K")
+            number = int(amount_of_watches[:k_index])
+            return number * 1000
+
+        return int(amount_of_watches)
