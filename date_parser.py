@@ -32,14 +32,14 @@ class DateParser:
         }
         return ru_en_month[russian_month_name]
 
-    def __split_date(self) -> list[str]:
+    def __split_date(self, datetime_: str) -> list[str]:
         """
         Разбивает дату-строку на спиосок.
         """
-        return self.datetime_.split(self.SPECIAL_DELIMETER_DATE)
+        return datetime_.split(self.SPECIAL_DELIMETER_DATE)
 
     def parse_date(self) -> datetime:
-        splited_date: list[str] = self.__split_date()
+        splited_date: list[str] = self.__split_date(self.datetime_)
         ru_month_name = splited_date[self.MONTH_POSITION]
         en_month_name = self.__russian_month_name_to_english_with_title(ru_month_name)
         splited_date[self.MONTH_POSITION] = en_month_name
