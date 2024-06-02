@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from review import Review
+from variables import Variables
 
 
 def convert_number_with_K_notations_to_int(amount_of_watches: str) -> int:
@@ -31,3 +32,7 @@ def calculate_rating_of_review(review: Review) -> float:
     """
     time_delta = datetime.today().toordinal() - review.publish_datetime.toordinal()
     return ((review.likes / review.watches) * (1 / time_delta)) * 100
+
+
+def create_url_to_user_reviews(user_name: str) -> str:
+    return f"{Variables.BASE_URL}{user_name}{Variables.REVIEW_POSTFIX}"
