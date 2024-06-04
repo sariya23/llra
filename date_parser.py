@@ -4,6 +4,12 @@ from exceptions import WrongDatetimeFormatFromApp
 
 
 class DateParser:
+    """
+    Класс используется для преобразования даты из строки в объект datetime.
+
+    Формат даты и времени с livelib: day ru_month_name year г. hours:minutes
+    """
+
     MONTH_POSITION = 1
     SPECIAL_DELIMETER_DATE = "\xa0"
     DATETIME_PATTERN = "%d %B %Y г. %H:%M"
