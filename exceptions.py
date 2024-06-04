@@ -4,3 +4,7 @@ class LandingException(Exception):
 
 class WrongDatetimeFormatFromApp(LandingException):
     pass
+
+
+class WrongMonthCaseFromApp(LandingException):
+    pass
