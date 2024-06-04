@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from exceptions import WrongDatetimeFormatFromApp
+from exceptions import WrongDatetimeFormatFromApp, WrongMonthCaseFromApp
 
 
 class DateParser:
@@ -42,8 +42,8 @@ class DateParser:
         try:
             return ru_en_month[russian_month_name]
         except KeyError:
-            raise WrongDatetimeFormatFromApp(
-                f"Datetime format changed in app. Cant parse {russian_month_name}"
+            raise WrongMonthCaseFromApp(
+                f"Month case changed in app. Cant parse {russian_month_name}"
             )
 
     def __split_date(self, datetime_: str) -> list[str]:
@@ -52,9 +52,17 @@ class DateParser:
         """
         return datetime_.split(self.SPECIAL_DELIMETER_DATE)
 
+    def __get_month(self, datetime_list: list[str]) -> str:
+        try:
+            return datetime_list[self.MONTH_POSITION]
+        except IndexError:
+            raise WrongDatetimeFormatFromApp(
+                f"Datetime format changed in app. Cant parse {datetime_list}"
+            )
+
     def parse_date(self) -> datetime:
         splited_date: list[str] = self.__split_date(self.datetime_)
-        ru_month_name = splited_date[self.MONTH_POSITION]
+        ru_month_name = self.__get_month(splited_date)
         en_month_name = self._russian_month_name_to_english_and_do_nominative_case(
             ru_month_name
         )
