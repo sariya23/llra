@@ -24,7 +24,7 @@ class ArgParser:
 
         return arg_name_value
 
-    def set_value_of_args_true_false_default(self) -> dict[str, bool]:
+    def set_value_of_args_true_false_default(self) -> dict[str, bool | str]:
         args = self.__map_arg_name_and_value()
         username = args.get("username")
         if username is None or username == "":
