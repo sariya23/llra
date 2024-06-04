@@ -1,6 +1,6 @@
-from review import Review
-from soup_page import SoupPage
-from variables import Variables
+from src.review import Review
+from src.soup_page import SoupPage
+from src.variables import Variables
 
 
 def create_url_to_user_reviews(user_name: str) -> str:

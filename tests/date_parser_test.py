@@ -3,8 +3,8 @@ from typing import Any
 
 import pytest
 
-from date_parser import DateParser
-from exceptions import WrongDatetimeFormatFromApp, WrongMonthCaseFromApp
+from src.date_parser import DateParser
+from src.exceptions import WrongDatetimeFormatFromApp, WrongMonthCaseFromApp
 
 
 @pytest.mark.parametrize(

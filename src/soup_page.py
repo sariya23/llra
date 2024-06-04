@@ -3,9 +3,9 @@ from datetime import datetime
 import requests  # type: ignore
 from bs4 import BeautifulSoup  # type: ignore
 
-from date_parser import DateParser
-from locatros import Locators
-from review import Review
+from src.date_parser import DateParser
+from src.locatros import Locators
+from src.review import Review
 
 
 class SoupPage:

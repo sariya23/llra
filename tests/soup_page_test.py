@@ -1,6 +1,6 @@
 import pytest
 
-from soup_page import SoupPage
+from src.soup_page import SoupPage
 
 
 @pytest.mark.parametrize(

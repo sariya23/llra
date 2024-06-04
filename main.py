@@ -1,4 +1,4 @@
-from utils import get_all_reviews_of_user
+from src.utils import get_all_reviews_of_user
 
 reviews = get_all_reviews_of_user("sariya1")
 print(
