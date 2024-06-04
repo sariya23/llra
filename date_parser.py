@@ -9,8 +9,9 @@ class DateParser:
     def __init__(self, datetime_: str) -> None:
         self.datetime_ = datetime_
 
-    def __russian_month_name_to_english_with_title(
-        self, russian_month_name: str
+    @staticmethod
+    def _russian_month_name_to_english_and_do_genetive_case(
+        russian_month_name: str,
     ) -> str:
         """
         Переводит название месяца с русского языка на английский и переводит
@@ -41,6 +42,8 @@ class DateParser:
     def parse_date(self) -> datetime:
         splited_date: list[str] = self.__split_date(self.datetime_)
         ru_month_name = splited_date[self.MONTH_POSITION]
-        en_month_name = self.__russian_month_name_to_english_with_title(ru_month_name)
+        en_month_name = self._russian_month_name_to_english_and_do_genetive_case(
+            ru_month_name
+        )
         splited_date[self.MONTH_POSITION] = en_month_name
         return datetime.strptime(" ".join(splited_date), self.DATETIME_PATTERN)
