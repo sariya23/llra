@@ -1,6 +1,9 @@
+from typing import Any
+
 import pytest
 
 from date_parser import DateParser
+from exceptions import WrongDatetimeFormatFromApp
 
 
 @pytest.mark.parametrize(
@@ -27,3 +30,11 @@ def test_translate_ru_month_to_en_month_positive(
         DateParser._russian_month_name_to_english_and_do_nominative_case(ru_month_name)
         == expected_en_name
     )
+
+
+@pytest.mark.parametrize("wrong_ru_month_name", ("йцу", 123, (1, 2, 3)))
+def test_translate_ru_month_to_en_month_neagtive(wrong_ru_month_name: Any):
+    with pytest.raises(WrongDatetimeFormatFromApp):
+        DateParser._russian_month_name_to_english_and_do_nominative_case(
+            wrong_ru_month_name
+        )
