@@ -10,9 +10,9 @@ if __name__ == "__main__":
     reviews = get_all_reviews_of_user(args["username"])
 
     if not args["in_file"]:
-        for article in sorted(
+        for review in sorted(
             reviews,
             key=lambda r: r.calculate_rating_of_review(),
             reverse=args["reverse"],
         ):
-            print(article)
+            print(review)
