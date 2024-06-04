@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from exceptions import WrongDatetimeFormatFromApp
+
 
 class DateParser:
     MONTH_POSITION = 1
@@ -31,7 +33,12 @@ class DateParser:
             "ноября": "November",
             "декабря": "December",
         }
-        return ru_en_month[russian_month_name]
+        try:
+            return ru_en_month[russian_month_name]
+        except KeyError:
+            raise WrongDatetimeFormatFromApp(
+                f"Datetime format changed in app. Cant parse {russian_month_name}"
+            )
 
     def __split_date(self, datetime_: str) -> list[str]:
         """
