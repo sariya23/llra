@@ -7,7 +7,7 @@ class DateParser:
     """
     Класс используется для преобразования даты из строки в объект datetime.
 
-    Формат даты и времени с livelib: day ru_month_name year г. hours:minutes
+    Формат даты и времени с livelib: day\xa0ru_month_name\xa0year\xa0г.\xa0hours:minutes
     """
 
     MONTH_POSITION = 1
