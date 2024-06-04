@@ -11,7 +11,7 @@ class Review:
         self.publish_datetime = publish_datetime
 
     def __repr__(self):
-        return f"Title: {self.title}; likes: {self.likes}; watches: {self.watches}; publish_date: {self.publish_datetime}; rating: {self.calculate_rating_of_review()}"
+        return f"Title: {self.title}; rating: {self.calculate_rating_of_review()}"
 
     def calculate_rating_of_review(self):
         """
