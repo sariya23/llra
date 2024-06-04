@@ -10,12 +10,12 @@ class DateParser:
         self.datetime_ = datetime_
 
     @staticmethod
-    def _russian_month_name_to_english_and_do_genetive_case(
+    def _russian_month_name_to_english_and_do_nominative_case(
         russian_month_name: str,
     ) -> str:
         """
-        Переводит название месяца с русского языка на английский и переводит
-        первую букву месяца в верхний регистр.
+        Перводит название месяца с русского на английский и меняет его падеж с
+        родительного на именительный. Также первая буква становится заглавной.
         """
         ru_en_month = {
             "января": "January",
@@ -42,7 +42,7 @@ class DateParser:
     def parse_date(self) -> datetime:
         splited_date: list[str] = self.__split_date(self.datetime_)
         ru_month_name = splited_date[self.MONTH_POSITION]
-        en_month_name = self._russian_month_name_to_english_and_do_genetive_case(
+        en_month_name = self._russian_month_name_to_english_and_do_nominative_case(
             ru_month_name
         )
         splited_date[self.MONTH_POSITION] = en_month_name
