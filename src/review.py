@@ -18,9 +18,6 @@ class Review:
         return f"Название книг: {self.title}"
 
     def calculate_rating_of_review(self):
-        """
-        Формула: likes/watches * 1/(curr_date - publish_date)
-        """
         time_delta = datetime.timestamp(datetime.now()) - datetime.timestamp(
             self.publish_datetime
         )
