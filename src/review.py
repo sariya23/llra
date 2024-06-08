@@ -17,5 +17,7 @@ class Review:
         """
         Формула: likes/watches * 1/(curr_date - publish_date)
         """
-        time_delta = datetime.today().toordinal() - self.publish_datetime.toordinal()
-        return ((self.likes / self.watches) * (1 / time_delta)) * 100
+        time_delta = datetime.timestamp(datetime.now()) - datetime.timestamp(
+            self.publish_datetime
+        )
+        return ((self.likes / self.watches) * (1 / time_delta)) * 1000000
