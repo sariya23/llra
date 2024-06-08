@@ -4,7 +4,6 @@ black==24.4.2
 certifi==2024.2.2
 cfgv==3.4.0
 charset-normalizer==3.3.2
-click==8.1.7
 distlib==0.3.8
 filelock==3.14.0
 flake8==7.0.0
