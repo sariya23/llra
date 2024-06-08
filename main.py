@@ -16,14 +16,17 @@ if __name__ == "__main__":
         help="The order of sort is ascending. Deafult is descending sort",
     )
     args = arg_parser.parse_args()
-    reviews = get_all_reviews_of_user()
+
+    username, reverse, in_file = args.username, args.asc_sort, args.in_file
+
+    reviews = get_all_reviews_of_user(username)
     reviews = sorted(
         reviews,
         key=lambda r: r.calculate_rating_of_review(),
-        reverse=args["reverse"],
+        reverse=reverse,
     )
 
-    if args["in_file"]:
+    if in_file:
         with open("res.txt", "w", encoding="utf-8") as f:
             f.writelines([f"{str(r)}\n" for r in reviews])
     else:
