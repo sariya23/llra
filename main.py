@@ -1,5 +1,6 @@
 import argparse
 
+from src.output_review import OutputReview
 from src.utils import get_all_reviews_of_user
 
 if __name__ == "__main__":
@@ -25,9 +26,8 @@ if __name__ == "__main__":
         key=lambda r: r.calculate_rating_of_review(),
         reverse=reverse,
     )
-
+    output = OutputReview(reviews)
     if in_file:
-        with open("res.txt", "w", encoding="utf-8") as f:
-            f.writelines([f"{str(r)}\n" for r in reviews])
+        output.output_in_file()
     else:
-        print(*reviews, sep="\n")
+        output.output_in_stdout()
