@@ -13,6 +13,11 @@ class Review:
     def __repr__(self):
         return f"Title: {self.title}; rating: {self.calculate_rating_of_review()}"
 
+    def __str__(self):
+        return (
+            f"Название книг: {self.title}; рейтинг: {self.calculate_rating_of_review()}"
+        )
+
     def calculate_rating_of_review(self):
         """
         Формула: likes/watches * 1/(curr_date - publish_date)
