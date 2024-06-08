@@ -11,13 +11,13 @@ class Review:
         self.watches = watches
         self.publish_datetime = publish_datetime
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Review({self.title}, {self.likes}, {self.watches}, {self.publish_datetime}, {self.calculate_rating_of_review()})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Название книг: {self.title}"
 
-    def calculate_rating_of_review(self):
+    def calculate_rating_of_review(self) -> float:
         time_delta = datetime.timestamp(datetime.now()) - datetime.timestamp(
             self.publish_datetime
         )
