@@ -28,6 +28,8 @@ if __name__ == "__main__":
 
     if in_file:
         with open("res.txt", "w", encoding="utf-8") as f:
-            f.writelines([f"{str(r)}\n" for r in reviews])
+            for i, r in enumerate(reviews, 1):
+                f.write(f"{i}. {r}\n")
     else:
-        print(*reviews, sep="\n")
+        for i, r in enumerate(reviews, 1):
+            print(f"{i}. {r}")
