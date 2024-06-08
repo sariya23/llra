@@ -1,6 +1,6 @@
 import pytest
 
-from utils import create_url_to_user_reviews
+from src.utils import create_url_to_user_reviews
 
 
 @pytest.mark.parametrize(

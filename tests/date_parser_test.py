@@ -47,6 +47,7 @@ def test_translate_ru_month_to_en_month_neagtive(wrong_ru_month_name: Any):
 )
 def test_parse_date_positive(datetime_str: str, expected_object_datetime: datetime):
     parser = DateParser(datetime_str)
+
     assert parser.parse_date() == expected_object_datetime
 
 
