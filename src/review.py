@@ -1,4 +1,5 @@
 from datetime import datetime
+from math import log
 
 
 class Review:
@@ -25,4 +26,4 @@ class Review:
         time_delta = datetime.timestamp(datetime.now()) - datetime.timestamp(
             self.publish_datetime
         )
-        return ((self.likes / self.watches) * (1 / time_delta)) * 1000000
+        return (self.likes * self.watches) / log(time_delta)
